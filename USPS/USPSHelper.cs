@@ -42,7 +42,7 @@ public static class USPSHelper
         addressRequest.UserId = userId;
         addressRequest.Revision = "1";
         addressRequest.Address.Id = record.Id;
-        addressRequest.Address.StreetAddress = record.Street;
+        addressRequest.Address.StreetAddress = GetRidOfHash(record.Street);
         addressRequest.Address.Apt = GetRidOfHash(record.Apartment);
         addressRequest.Address.City = record.City;
         addressRequest.Address.State = record.State;
@@ -73,13 +73,9 @@ public static class USPSHelper
             throw;
         }
     }
-    private static string GetRidOfHash(string apartment)
+    private static string GetRidOfHash(string address)
     {
-        if (apartment.StartsWith('#'))
-        {
-            return "Apt " + apartment[1..];
-        }
-        else return apartment;
+        return address.Replace("#", "APT ");
     }
     public static string ToCSV(this IEnumerable<Record> records)
     {
