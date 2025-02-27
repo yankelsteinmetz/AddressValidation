@@ -132,7 +132,7 @@ public partial class MainWindow : Form
         if (saveFileDialog.ShowDialog() == DialogResult.OK)
         {
             // Write content to the selected file
-            File.WriteAllText(saveFileDialog.FileName, "ID,Street,Apt,City,State,Zip");
+            File.WriteAllText(saveFileDialog.FileName, "ID,Street,Apartment,City,State,Zip");
         }
     }
 
